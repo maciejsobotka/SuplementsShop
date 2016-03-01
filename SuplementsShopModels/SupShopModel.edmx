@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SuplementsShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NrDomu" Type="int" Nullable="false" />
+          <Property Name="NrMieszkania" Type="int" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Wojewodzctwo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kraj" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminPlatnosci" Type="date" Nullable="false" />
+          <Property Name="Naleznosc" Type="int" Nullable="false" />
+          <Property Name="IdKlienta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LimitKredytowy" Type="int" Nullable="false" />
+          <Property Name="SaldoZadluzenia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Przesylka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PotwierdzoneDostarczenie" Type="bit" />
+          <Property Name="Wartosc" Type="int" Nullable="false" />
+          <Property Name="Ubezpieczenie" Type="bit" />
+          <Property Name="AnulacjaOplaty" Type="bit" />
+          <Property Name="AdresDostawy" Type="int" Nullable="false" />
+          <Property Name="WymaganaPlatnoscGotowka" Type="bit" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Wartosc" Type="int" Nullable="false" />
+          <Property Name="TerminRealizacji" Type="date" Nullable="false" />
+          <Property Name="Przedplata" Type="int" Nullable="false" />
+          <Property Name="Odrzucone" Type="bit" />
+          <Property Name="LiczbaNiestandardowychProduktow" Type="int" Nullable="false" />
+          <Property Name="LiczbaProduktow" Type="int" Nullable="false" />
+          <Property Name="SpecyfikacjaWykonawcza" Type="bit" />
+          <Property Name="DedykowanySpecjalista" Type="bit" />
+          <Property Name="NieMoznaWyslac" Type="bit" />
+          <Property Name="AdresRealizacji" Type="int" Nullable="false" />
+          <Property Name="IdKlienta" Type="int" Nullable="false" />
+          <Property Name="IdPrzesylki" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Faktura_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Przesylka_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Przesylka" Type="Self.Przesylka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Przesylka">
+              <PropertyRef Name="AdresDostawy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="AdresRealizacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Przesylka">
+          <End Role="Przesylka" Type="Self.Przesylka" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przesylka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdPrzesylki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuplementsShopModelStoreContainer">
+          <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producent" EntityType="Self.Producent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Przesylka" EntityType="Self.Przesylka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Faktura_Klient" Association="Self.FK_Faktura_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przesylka_Adres" Association="Self.FK_Przesylka_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Przesylka" EntitySet="Przesylka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Adres" Association="Self.FK_Zamowienie_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Klient" Association="Self.FK_Zamowienie_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Przesylka" Association="Self.FK_Zamowienie_Przesylka">
+            <End Role="Przesylka" EntitySet="Przesylka" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SuplementsShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NrDomu" Type="Int32" Nullable="false" />
+          <Property Name="NrMieszkania" Type="Int32" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wojewodzctwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Przesylka" Relationship="Self.FK_Przesylka_Adres" FromRole="Adres" ToRole="Przesylka" />
+          <NavigationProperty Name="Zamowienie" Relationship="Self.FK_Zamowienie_Adres" FromRole="Adres" ToRole="Zamowienie" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Naleznosc" Type="Int32" Nullable="false" />
+          <Property Name="IdKlienta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_Faktura_Klient" FromRole="Faktura" ToRole="Klient" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LimitKredytowy" Type="Int32" Nullable="false" />
+          <Property Name="SaldoZadluzenia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_Faktura_Klient" FromRole="Klient" ToRole="Faktura" />
+          <NavigationProperty Name="Zamowienie" Relationship="Self.FK_Zamowienie_Klient" FromRole="Klient" ToRole="Zamowienie" />
+        </EntityType>
+        <EntityType Name="Producent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Przesylka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PotwierdzoneDostarczenie" Type="Boolean" />
+          <Property Name="Wartosc" Type="Int32" Nullable="false" />
+          <Property Name="Ubezpieczenie" Type="Boolean" />
+          <Property Name="AnulacjaOplaty" Type="Boolean" />
+          <Property Name="AdresDostawy" Type="Int32" Nullable="false" />
+          <Property Name="WymaganaPlatnoscGotowka" Type="Boolean" />
+          <NavigationProperty Name="Adres" Relationship="Self.FK_Przesylka_Adres" FromRole="Przesylka" ToRole="Adres" />
+          <NavigationProperty Name="Zamowienie" Relationship="Self.FK_Zamowienie_Przesylka" FromRole="Przesylka" ToRole="Zamowienie" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Wartosc" Type="Int32" Nullable="false" />
+          <Property Name="TerminRealizacji" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Przedplata" Type="Int32" Nullable="false" />
+          <Property Name="Odrzucone" Type="Boolean" />
+          <Property Name="LiczbaNiestandardowychProduktow" Type="Int32" Nullable="false" />
+          <Property Name="LiczbaProduktow" Type="Int32" Nullable="false" />
+          <Property Name="SpecyfikacjaWykonawcza" Type="Boolean" />
+          <Property Name="DedykowanySpecjalista" Type="Boolean" />
+          <Property Name="NieMoznaWyslac" Type="Boolean" />
+          <Property Name="AdresRealizacji" Type="Int32" Nullable="false" />
+          <Property Name="IdKlienta" Type="Int32" Nullable="false" />
+          <Property Name="IdPrzesylki" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adres" Relationship="Self.FK_Zamowienie_Adres" FromRole="Zamowienie" ToRole="Adres" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_Zamowienie_Klient" FromRole="Zamowienie" ToRole="Klient" />
+          <NavigationProperty Name="Przesylka" Relationship="Self.FK_Zamowienie_Przesylka" FromRole="Zamowienie" ToRole="Przesylka" />
+        </EntityType>
+        <Association Name="FK_Przesylka_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Przesylka" Type="Self.Przesylka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Przesylka">
+              <PropertyRef Name="AdresDostawy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="AdresRealizacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdKlienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Przesylka">
+          <End Role="Przesylka" Type="Self.Przesylka" Multiplicity="1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przesylka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdPrzesylki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuplementsShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adres" EntityType="Self.Adres" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" />
+          <EntitySet Name="Producent" EntityType="Self.Producent" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" />
+          <EntitySet Name="Przesylka" EntityType="Self.Przesylka" />
+          <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" />
+          <AssociationSet Name="FK_Przesylka_Adres" Association="Self.FK_Przesylka_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Przesylka" EntitySet="Przesylka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Adres" Association="Self.FK_Zamowienie_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Klient" Association="Self.FK_Faktura_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Klient" Association="Self.FK_Zamowienie_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Przesylka" Association="Self.FK_Zamowienie_Przesylka">
+            <End Role="Przesylka" EntitySet="Przesylka" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SuplementsShopModelStoreContainer" CdmEntityContainer="SuplementsShopEntities">
+          <EntitySetMapping Name="Adres">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Adres">
+              <MappingFragment StoreEntitySet="Adres">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="NrDomu" ColumnName="NrDomu" />
+                <ScalarProperty Name="NrMieszkania" ColumnName="NrMieszkania" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Wojewodzctwo" ColumnName="Wojewodzctwo" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
+                <ScalarProperty Name="Naleznosc" ColumnName="Naleznosc" />
+                <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoria">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Kategoria">
+              <MappingFragment StoreEntitySet="Kategoria">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klient">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LimitKredytowy" ColumnName="LimitKredytowy" />
+                <ScalarProperty Name="SaldoZadluzenia" ColumnName="SaldoZadluzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producent">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Producent">
+              <MappingFragment StoreEntitySet="Producent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkt">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Produkt">
+              <MappingFragment StoreEntitySet="Produkt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przesylka">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Przesylka">
+              <MappingFragment StoreEntitySet="Przesylka">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PotwierdzoneDostarczenie" ColumnName="PotwierdzoneDostarczenie" />
+                <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
+                <ScalarProperty Name="Ubezpieczenie" ColumnName="Ubezpieczenie" />
+                <ScalarProperty Name="AnulacjaOplaty" ColumnName="AnulacjaOplaty" />
+                <ScalarProperty Name="AdresDostawy" ColumnName="AdresDostawy" />
+                <ScalarProperty Name="WymaganaPlatnoscGotowka" ColumnName="WymaganaPlatnoscGotowka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienie">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Zamowienie">
+              <MappingFragment StoreEntitySet="Zamowienie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
+                <ScalarProperty Name="TerminRealizacji" ColumnName="TerminRealizacji" />
+                <ScalarProperty Name="Przedplata" ColumnName="Przedplata" />
+                <ScalarProperty Name="Odrzucone" ColumnName="Odrzucone" />
+                <ScalarProperty Name="LiczbaNiestandardowychProduktow" ColumnName="LiczbaNiestandardowychProduktow" />
+                <ScalarProperty Name="LiczbaProduktow" ColumnName="LiczbaProduktow" />
+                <ScalarProperty Name="SpecyfikacjaWykonawcza" ColumnName="SpecyfikacjaWykonawcza" />
+                <ScalarProperty Name="DedykowanySpecjalista" ColumnName="DedykowanySpecjalista" />
+                <ScalarProperty Name="NieMoznaWyslac" ColumnName="NieMoznaWyslac" />
+                <ScalarProperty Name="AdresRealizacji" ColumnName="AdresRealizacji" />
+                <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
+                <ScalarProperty Name="IdPrzesylki" ColumnName="IdPrzesylki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
