@@ -68,6 +68,12 @@
     <Compile Include="Produkt.cs">
       <DependentUpon>SupShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProduktyKategorii.cs">
+      <DependentUpon>SupShopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProduktyZamówienia.cs">
+      <DependentUpon>SupShopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Przesylka.cs">

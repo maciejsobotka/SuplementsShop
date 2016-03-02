@@ -12,21 +12,13 @@ namespace SuplementsShopModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Klient
+    public partial class ProduktyKategorii
     {
-        public Klient()
-        {
-            this.Faktura = new HashSet<Faktura>();
-            this.Zamowienie = new HashSet<Zamowienie>();
-        }
-    
         public int Id { get; set; }
-        public string Status { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public string AdresEmail { get; set; }
+        public int Produkt_Id { get; set; }
+        public int Kategoria_Id { get; set; }
     
-        public virtual ICollection<Faktura> Faktura { get; set; }
-        public virtual ICollection<Zamowienie> Zamowienie { get; set; }
+        public virtual Kategoria Kategoria { get; set; }
+        public virtual Produkt Produkt { get; set; }
     }
 }

@@ -14,6 +14,14 @@ namespace SuplementsShopModels
     
     public partial class Kategoria
     {
+        public Kategoria()
+        {
+            this.ProduktyKategorii = new HashSet<ProduktyKategorii>();
+        }
+    
         public int Id { get; set; }
+        public string NazwaKategorii { get; set; }
+    
+        public virtual ICollection<ProduktyKategorii> ProduktyKategorii { get; set; }
     }
 }

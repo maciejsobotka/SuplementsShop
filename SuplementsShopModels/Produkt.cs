@@ -14,6 +14,21 @@ namespace SuplementsShopModels
     
     public partial class Produkt
     {
+        public Produkt()
+        {
+            this.ProduktyKategorii = new HashSet<ProduktyKategorii>();
+            this.ProduktyZamówienia = new HashSet<ProduktyZamówienia>();
+        }
+    
         public int Id { get; set; }
+        public string NazwaProduktu { get; set; }
+        public double CenaProduktu { get; set; }
+        public double WagaProduktu { get; set; }
+        public Nullable<System.DateTime> DataDodaniaProduktu { get; set; }
+        public int Producent_Id { get; set; }
+    
+        public virtual Producent Producent { get; set; }
+        public virtual ICollection<ProduktyKategorii> ProduktyKategorii { get; set; }
+        public virtual ICollection<ProduktyZamówienia> ProduktyZamówienia { get; set; }
     }
 }

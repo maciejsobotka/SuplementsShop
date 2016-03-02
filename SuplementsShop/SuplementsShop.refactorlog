@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7ecb08a1-bead-47b3-9de1-75783235de5f" ChangeDateTime="03/02/2016 12:50:42">
+    <Property Name="ElementName" Value="[dbo].[Zamowienie].[IdKlienta]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Zamowienie]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Klient_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b088c016-4833-47f3-b86b-a755024515ac" ChangeDateTime="03/02/2016 12:50:55">
+    <Property Name="ElementName" Value="[dbo].[Zamowienie].[IdPrzesylki]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Zamowienie]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Przesylka_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="19cc7e84-8152-4884-812d-f8e22bf54324" ChangeDateTime="03/02/2016 13:13:41">
+    <Property Name="ElementName" Value="[dbo].[Faktura].[IdKlienta]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Faktura]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Klient_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="74a5e235-00df-472a-9476-2942e77cc47a" ChangeDateTime="03/02/2016 13:14:15">
+    <Property Name="ElementName" Value="[dbo].[FK_Faktura_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Faktura]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Faktura_Zamówienie]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3275c105-cbee-4f58-bc11-f4aac819dfe4" ChangeDateTime="03/02/2016 13:14:27">
+    <Property Name="ElementName" Value="[dbo].[Faktura].[Zamóienie_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Faktura]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Zamówienie_id" />
+  </Operation>
+</Operations>

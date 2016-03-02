@@ -14,22 +14,26 @@ namespace SuplementsShopModels
     
     public partial class Zamowienie
     {
+        public Zamowienie()
+        {
+            this.ProduktyZamówienia = new HashSet<ProduktyZamówienia>();
+            this.Faktura = new HashSet<Faktura>();
+        }
+    
         public int Id { get; set; }
         public int Wartosc { get; set; }
         public System.DateTime TerminRealizacji { get; set; }
         public int Przedplata { get; set; }
         public Nullable<bool> Odrzucone { get; set; }
-        public int LiczbaNiestandardowychProduktow { get; set; }
         public int LiczbaProduktow { get; set; }
-        public Nullable<bool> SpecyfikacjaWykonawcza { get; set; }
-        public Nullable<bool> DedykowanySpecjalista { get; set; }
-        public Nullable<bool> NieMoznaWyslac { get; set; }
         public int AdresRealizacji { get; set; }
-        public int IdKlienta { get; set; }
-        public int IdPrzesylki { get; set; }
+        public int Klient_Id { get; set; }
+        public int Przesylka_Id { get; set; }
     
         public virtual Adres Adres { get; set; }
-        public virtual Klient Klient { get; set; }
+        public virtual ICollection<ProduktyZamówienia> ProduktyZamówienia { get; set; }
         public virtual Przesylka Przesylka { get; set; }
+        public virtual ICollection<Faktura> Faktura { get; set; }
+        public virtual Klient Klient { get; set; }
     }
 }

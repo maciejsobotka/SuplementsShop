@@ -14,6 +14,14 @@ namespace SuplementsShopModels
     
     public partial class Producent
     {
+        public Producent()
+        {
+            this.Produkt = new HashSet<Produkt>();
+        }
+    
         public int Id { get; set; }
+        public string NazwaProducenta { get; set; }
+    
+        public virtual ICollection<Produkt> Produkt { get; set; }
     }
 }

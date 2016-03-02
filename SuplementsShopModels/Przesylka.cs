@@ -20,12 +20,9 @@ namespace SuplementsShopModels
         }
     
         public int Id { get; set; }
-        public Nullable<bool> PotwierdzoneDostarczenie { get; set; }
+        public bool PotwierdzoneDostarczenie { get; set; }
         public int Wartosc { get; set; }
-        public Nullable<bool> Ubezpieczenie { get; set; }
-        public Nullable<bool> AnulacjaOplaty { get; set; }
         public int AdresDostawy { get; set; }
-        public Nullable<bool> WymaganaPlatnoscGotowka { get; set; }
     
         public virtual Adres Adres { get; set; }
         public virtual ICollection<Zamowienie> Zamowienie { get; set; }
