@@ -71,7 +71,7 @@
     <Compile Include="ProduktyKategorii.cs">
       <DependentUpon>SupShopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProduktyZamówienia.cs">
+    <Compile Include="ProduktyZamowienia.cs">
       <DependentUpon>SupShopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

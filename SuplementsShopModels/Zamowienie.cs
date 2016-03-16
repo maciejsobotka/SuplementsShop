@@ -16,8 +16,8 @@ namespace SuplementsShopModels
     {
         public Zamowienie()
         {
-            this.ProduktyZamówienia = new HashSet<ProduktyZamówienia>();
             this.Faktura = new HashSet<Faktura>();
+            this.ProduktyZamowienia = new HashSet<ProduktyZamowienia>();
         }
     
         public int Id { get; set; }
@@ -31,9 +31,9 @@ namespace SuplementsShopModels
         public int Przesylka_Id { get; set; }
     
         public virtual Adres Adres { get; set; }
-        public virtual ICollection<ProduktyZamówienia> ProduktyZamówienia { get; set; }
-        public virtual Przesylka Przesylka { get; set; }
         public virtual ICollection<Faktura> Faktura { get; set; }
         public virtual Klient Klient { get; set; }
+        public virtual ICollection<ProduktyZamowienia> ProduktyZamowienia { get; set; }
+        public virtual Przesylka Przesylka { get; set; }
     }
 }

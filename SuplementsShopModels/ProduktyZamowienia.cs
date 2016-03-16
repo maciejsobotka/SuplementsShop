@@ -12,11 +12,11 @@ namespace SuplementsShopModels
     using System;
     using System.Collections.Generic;
     
-    public partial class ProduktyZamówienia
+    public partial class ProduktyZamowienia
     {
         public int Id { get; set; }
         public int Produkt_Id { get; set; }
-        public int Zamówienie_Id { get; set; }
+        public int Zamowienie_Id { get; set; }
     
         public virtual Produkt Produkt { get; set; }
         public virtual Zamowienie Zamowienie { get; set; }

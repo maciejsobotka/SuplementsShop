@@ -61,13 +61,13 @@
   <ItemGroup>
     <Build Include="Producent.sql" />
     <Build Include="Klient.sql" />
-    <Build Include="Zamówienie.sql" />
+    <Build Include="Zamowienie.sql" />
     <Build Include="Faktura.sql" />
     <Build Include="Kategoria.sql" />
     <Build Include="Adres.sql" />
     <Build Include="Przesylka.sql" />
     <Build Include="Produkt.sql" />
-    <Build Include="ProduktyZamówienia.sql" />
+    <Build Include="ProduktyZamowienia.sql" />
     <Build Include="ProduktyKategorii.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,7 @@ namespace SuplementsShopModels
         public System.DateTime TerminPlatnosci { get; set; }
         public int Naleznosc { get; set; }
         public int Klient_Id { get; set; }
-        public int Zamówienie_id { get; set; }
+        public int Zamowienie_id { get; set; }
     
         public virtual Klient Klient { get; set; }
         public virtual Zamowienie Zamowienie { get; set; }

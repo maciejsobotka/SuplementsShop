@@ -4,7 +4,7 @@
     [TerminPlatnosci] DATE NOT NULL, 
     [Naleznosc] INT NOT NULL, 
     [Klient_Id] INT NOT NULL, 
-    [Zamówienie_id] INT NOT NULL, 
+    [Zamowienie_id] INT NOT NULL, 
     CONSTRAINT [FK_Faktura_Klient] FOREIGN KEY ([Klient_Id]) REFERENCES [Klient]([Id]), 
-    CONSTRAINT [FK_Faktura_Zamówienie] FOREIGN KEY ([Zamówienie_Id]) REFERENCES [Zamowienie]([Id])
+    CONSTRAINT [FK_Faktura_Zamowienie] FOREIGN KEY ([Zamowienie_Id]) REFERENCES [Zamowienie]([Id])
 )

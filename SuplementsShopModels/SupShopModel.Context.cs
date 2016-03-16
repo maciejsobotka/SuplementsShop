@@ -26,14 +26,14 @@ namespace SuplementsShopModels
         }
     
         public virtual DbSet<Adres> Adres { get; set; }
+        public virtual DbSet<Faktura> Faktura { get; set; }
         public virtual DbSet<Kategoria> Kategoria { get; set; }
+        public virtual DbSet<Klient> Klient { get; set; }
         public virtual DbSet<Producent> Producent { get; set; }
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<ProduktyKategorii> ProduktyKategorii { get; set; }
-        public virtual DbSet<ProduktyZamówienia> ProduktyZamówienia { get; set; }
+        public virtual DbSet<ProduktyZamowienia> ProduktyZamowienia { get; set; }
         public virtual DbSet<Przesylka> Przesylka { get; set; }
         public virtual DbSet<Zamowienie> Zamowienie { get; set; }
-        public virtual DbSet<Faktura> Faktura { get; set; }
-        public virtual DbSet<Klient> Klient { get; set; }
     }
 }

@@ -25,7 +25,7 @@
           <Property Name="TerminPlatnosci" Type="date" Nullable="false" />
           <Property Name="Naleznosc" Type="int" Nullable="false" />
           <Property Name="Klient_Id" Type="int" Nullable="false" />
-          <Property Name="Zamówienie_id" Type="int" Nullable="false" />
+          <Property Name="Zamowienie_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Kategoria">
           <Key>
@@ -70,13 +70,13 @@
           <Property Name="Produkt_Id" Type="int" Nullable="false" />
           <Property Name="Kategoria_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProduktyZamówienia">
+        <EntityType Name="ProduktyZamowienia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Produkt_Id" Type="int" Nullable="false" />
-          <Property Name="Zamówienie_Id" Type="int" Nullable="false" />
+          <Property Name="Zamowienie_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Przesylka">
           <Key>
@@ -113,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Faktura_Zamówienie">
+        <Association Name="FK_Faktura_Zamowienie">
           <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +121,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Faktura">
-              <PropertyRef Name="Zamówienie_id" />
+              <PropertyRef Name="Zamowienie_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -163,25 +163,25 @@
         </Association>
         <Association Name="FK_ProduktyZamówienia_ToTableProdukt">
           <End Role="Produkt" Type="Self.Produkt" Multiplicity="1" />
-          <End Role="ProduktyZamówienia" Type="Self.ProduktyZamówienia" Multiplicity="*" />
+          <End Role="ProduktyZamowienia" Type="Self.ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ProduktyZamówienia">
+            <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Produkt_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProduktyZamówienia_ToTableZamówienie">
           <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
-          <End Role="ProduktyZamówienia" Type="Self.ProduktyZamówienia" Multiplicity="*" />
+          <End Role="ProduktyZamowienia" Type="Self.ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ProduktyZamówienia">
-              <PropertyRef Name="Zamówienie_Id" />
+            <Dependent Role="ProduktyZamowienia">
+              <PropertyRef Name="Zamowienie_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -241,14 +241,14 @@
           <EntitySet Name="Producent" EntityType="Self.Producent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProduktyKategorii" EntityType="Self.ProduktyKategorii" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProduktyZamówienia" EntityType="Self.ProduktyZamówienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProduktyZamowienia" EntityType="Self.ProduktyZamowienia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Przesylka" EntityType="Self.Przesylka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Faktura_Klient" Association="Self.FK_Faktura_Klient">
             <End Role="Klient" EntitySet="Klient" />
             <End Role="Faktura" EntitySet="Faktura" />
           </AssociationSet>
-          <AssociationSet Name="FK_Faktura_Zamówienie" Association="Self.FK_Faktura_Zamówienie">
+          <AssociationSet Name="FK_Faktura_Zamowienie" Association="Self.FK_Faktura_Zamowienie">
             <End Role="Zamowienie" EntitySet="Zamowienie" />
             <End Role="Faktura" EntitySet="Faktura" />
           </AssociationSet>
@@ -266,11 +266,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProduktyZamówienia_ToTableProdukt" Association="Self.FK_ProduktyZamówienia_ToTableProdukt">
             <End Role="Produkt" EntitySet="Produkt" />
-            <End Role="ProduktyZamówienia" EntitySet="ProduktyZamówienia" />
+            <End Role="ProduktyZamowienia" EntitySet="ProduktyZamowienia" />
           </AssociationSet>
           <AssociationSet Name="FK_ProduktyZamówienia_ToTableZamówienie" Association="Self.FK_ProduktyZamówienia_ToTableZamówienie">
             <End Role="Zamowienie" EntitySet="Zamowienie" />
-            <End Role="ProduktyZamówienia" EntitySet="ProduktyZamówienia" />
+            <End Role="ProduktyZamowienia" EntitySet="ProduktyZamowienia" />
           </AssociationSet>
           <AssociationSet Name="FK_Przesylka_Adres" Association="Self.FK_Przesylka_Adres">
             <End Role="Adres" EntitySet="Adres" />
@@ -295,11 +295,13 @@
       <Schema Namespace="SuplementsShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SuplementsShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adres" EntityType="SuplementsShopModel.Adres" />
+          <EntitySet Name="Faktura" EntityType="SuplementsShopModel.Faktura" />
           <EntitySet Name="Kategoria" EntityType="SuplementsShopModel.Kategoria" />
+          <EntitySet Name="Klient" EntityType="SuplementsShopModel.Klient" />
           <EntitySet Name="Producent" EntityType="SuplementsShopModel.Producent" />
           <EntitySet Name="Produkt" EntityType="SuplementsShopModel.Produkt" />
           <EntitySet Name="ProduktyKategorii" EntityType="SuplementsShopModel.ProduktyKategorii" />
-          <EntitySet Name="ProduktyZamówienia" EntityType="SuplementsShopModel.ProduktyZamówienia" />
+          <EntitySet Name="ProduktyZamowienia" EntityType="SuplementsShopModel.ProduktyZamowienia" />
           <EntitySet Name="Przesylka" EntityType="SuplementsShopModel.Przesylka" />
           <EntitySet Name="Zamowienie" EntityType="SuplementsShopModel.Zamowienie" />
           <AssociationSet Name="FK_Przesylka_Adres" Association="SuplementsShopModel.FK_Przesylka_Adres">
@@ -310,9 +312,21 @@
             <End Role="Adres" EntitySet="Adres" />
             <End Role="Zamowienie" EntitySet="Zamowienie" />
           </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Klient" Association="SuplementsShopModel.FK_Faktura_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Zamowienie" Association="SuplementsShopModel.FK_Faktura_Zamowienie">
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProduktyKategorii_ToTableKategoria" Association="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria">
             <End Role="Kategoria" EntitySet="Kategoria" />
             <End Role="ProduktyKategorii" EntitySet="ProduktyKategorii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Klient" Association="SuplementsShopModel.FK_Zamowienie_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
           </AssociationSet>
           <AssociationSet Name="FK_Produkt_ToTableProducent" Association="SuplementsShopModel.FK_Produkt_ToTableProducent">
             <End Role="Producent" EntitySet="Producent" />
@@ -324,31 +338,17 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProduktyZamówienia_ToTableProdukt" Association="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt">
             <End Role="Produkt" EntitySet="Produkt" />
-            <End Role="ProduktyZamówienia" EntitySet="ProduktyZamówienia" />
+            <End Role="ProduktyZamowienia" EntitySet="ProduktyZamowienia" />
           </AssociationSet>
           <AssociationSet Name="FK_ProduktyZamówienia_ToTableZamówienie" Association="SuplementsShopModel.FK_ProduktyZamówienia_ToTableZamówienie">
             <End Role="Zamowienie" EntitySet="Zamowienie" />
-            <End Role="ProduktyZamówienia" EntitySet="ProduktyZamówienia" />
+            <End Role="ProduktyZamowienia" EntitySet="ProduktyZamowienia" />
           </AssociationSet>
           <AssociationSet Name="FK_Zamowienie_Przesylka" Association="SuplementsShopModel.FK_Zamowienie_Przesylka">
             <End Role="Przesylka" EntitySet="Przesylka" />
             <End Role="Zamowienie" EntitySet="Zamowienie" />
           </AssociationSet>
-          <EntitySet Name="Faktura" EntityType="SuplementsShopModel.Faktura" />
-          <EntitySet Name="Klient" EntityType="SuplementsShopModel.Klient" />
-          <AssociationSet Name="FK_Faktura_Klient" Association="SuplementsShopModel.FK_Faktura_Klient">
-            <End Role="Klient" EntitySet="Klient" />
-            <End Role="Faktura" EntitySet="Faktura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Faktura_Zamówienie" Association="SuplementsShopModel.FK_Faktura_Zamówienie">
-            <End Role="Zamowienie" EntitySet="Zamowienie" />
-            <End Role="Faktura" EntitySet="Faktura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Zamowienie_Klient" Association="SuplementsShopModel.FK_Zamowienie_Klient">
-            <End Role="Klient" EntitySet="Klient" />
-            <End Role="Zamowienie" EntitySet="Zamowienie" />
-          </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="Adres">
           <Key>
             <PropertyRef Name="Id" />
@@ -363,6 +363,18 @@
           <NavigationProperty Name="Przesylka" Relationship="SuplementsShopModel.FK_Przesylka_Adres" FromRole="Adres" ToRole="Przesylka" />
           <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Zamowienie_Adres" FromRole="Adres" ToRole="Zamowienie" />
         </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Naleznosc" Type="Int32" Nullable="false" />
+          <Property Name="Klient_Id" Type="Int32" Nullable="false" />
+          <Property Name="Zamowienie_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Faktura" ToRole="Klient" />
+          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Faktura_Zamowienie" FromRole="Faktura" ToRole="Zamowienie" />
+        </EntityType>
         <EntityType Name="Kategoria">
           <Key>
             <PropertyRef Name="Id" />
@@ -370,6 +382,18 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="NazwaKategorii" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProduktyKategorii" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria" FromRole="Kategoria" ToRole="ProduktyKategorii" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Faktura" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Klient" ToRole="Faktura" />
+          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Zamowienie_Klient" FromRole="Klient" ToRole="Zamowienie" />
         </EntityType>
         <EntityType Name="Producent">
           <Key>
@@ -391,7 +415,7 @@
           <Property Name="Producent_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producent" Relationship="SuplementsShopModel.FK_Produkt_ToTableProducent" FromRole="Produkt" ToRole="Producent" />
           <NavigationProperty Name="ProduktyKategorii" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableProdukt" FromRole="Produkt" ToRole="ProduktyKategorii" />
-          <NavigationProperty Name="ProduktyZamówienia" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt" FromRole="Produkt" ToRole="ProduktyZamówienia" />
+          <NavigationProperty Name="ProduktyZamowienia" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt" FromRole="Produkt" ToRole="ProduktyZamowienia" />
         </EntityType>
         <EntityType Name="ProduktyKategorii">
           <Key>
@@ -403,15 +427,15 @@
           <NavigationProperty Name="Kategoria" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria" FromRole="ProduktyKategorii" ToRole="Kategoria" />
           <NavigationProperty Name="Produkt" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableProdukt" FromRole="ProduktyKategorii" ToRole="Produkt" />
         </EntityType>
-        <EntityType Name="ProduktyZamówienia">
+        <EntityType Name="ProduktyZamowienia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Produkt_Id" Type="Int32" Nullable="false" />
-          <Property Name="Zamówienie_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Produkt" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt" FromRole="ProduktyZamówienia" ToRole="Produkt" />
-          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableZamówienie" FromRole="ProduktyZamówienia" ToRole="Zamowienie" />
+          <Property Name="Zamowienie_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Produkt" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt" FromRole="ProduktyZamowienia" ToRole="Produkt" />
+          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableZamówienie" FromRole="ProduktyZamowienia" ToRole="Zamowienie" />
         </EntityType>
         <EntityType Name="Przesylka">
           <Key>
@@ -438,10 +462,10 @@
           <Property Name="Klient_Id" Type="Int32" Nullable="false" />
           <Property Name="Przesylka_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Adres" Relationship="SuplementsShopModel.FK_Zamowienie_Adres" FromRole="Zamowienie" ToRole="Adres" />
-          <NavigationProperty Name="ProduktyZamówienia" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableZamówienie" FromRole="Zamowienie" ToRole="ProduktyZamówienia" />
-          <NavigationProperty Name="Przesylka" Relationship="SuplementsShopModel.FK_Zamowienie_Przesylka" FromRole="Zamowienie" ToRole="Przesylka" />
-          <NavigationProperty Name="Faktura" Relationship="SuplementsShopModel.FK_Faktura_Zamówienie" FromRole="Zamowienie" ToRole="Faktura" />
+          <NavigationProperty Name="Faktura" Relationship="SuplementsShopModel.FK_Faktura_Zamowienie" FromRole="Zamowienie" ToRole="Faktura" />
           <NavigationProperty Name="Klient" Relationship="SuplementsShopModel.FK_Zamowienie_Klient" FromRole="Zamowienie" ToRole="Klient" />
+          <NavigationProperty Name="ProduktyZamowienia" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableZamówienie" FromRole="Zamowienie" ToRole="ProduktyZamowienia" />
+          <NavigationProperty Name="Przesylka" Relationship="SuplementsShopModel.FK_Zamowienie_Przesylka" FromRole="Zamowienie" ToRole="Przesylka" />
         </EntityType>
         <Association Name="FK_Przesylka_Adres">
           <End Type="SuplementsShopModel.Adres" Role="Adres" Multiplicity="1" />
@@ -467,6 +491,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Faktura_Klient">
+          <End Type="SuplementsShopModel.Klient" Role="Klient" Multiplicity="1" />
+          <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="Klient_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Zamowienie">
+          <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="1" />
+          <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="Zamowienie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProduktyKategorii_ToTableKategoria">
           <End Type="SuplementsShopModel.Kategoria" Role="Kategoria" Multiplicity="1" />
           <End Type="SuplementsShopModel.ProduktyKategorii" Role="ProduktyKategorii" Multiplicity="*" />
@@ -476,6 +524,18 @@
             </Principal>
             <Dependent Role="ProduktyKategorii">
               <PropertyRef Name="Kategoria_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Klient">
+          <End Type="SuplementsShopModel.Klient" Role="Klient" Multiplicity="1" />
+          <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="Klient_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -505,25 +565,25 @@
         </Association>
         <Association Name="FK_ProduktyZamówienia_ToTableProdukt">
           <End Type="SuplementsShopModel.Produkt" Role="Produkt" Multiplicity="1" />
-          <End Type="SuplementsShopModel.ProduktyZamówienia" Role="ProduktyZamówienia" Multiplicity="*" />
+          <End Type="SuplementsShopModel.ProduktyZamowienia" Role="ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ProduktyZamówienia">
+            <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Produkt_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProduktyZamówienia_ToTableZamówienie">
           <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="1" />
-          <End Type="SuplementsShopModel.ProduktyZamówienia" Role="ProduktyZamówienia" Multiplicity="*" />
+          <End Type="SuplementsShopModel.ProduktyZamowienia" Role="ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ProduktyZamówienia">
-              <PropertyRef Name="Zamówienie_Id" />
+            <Dependent Role="ProduktyZamowienia">
+              <PropertyRef Name="Zamowienie_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -536,66 +596,6 @@
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="Przesylka_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Faktura">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Naleznosc" Type="Int32" Nullable="false" />
-          <Property Name="Klient_Id" Type="Int32" Nullable="false" />
-          <Property Name="Zamówienie_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Klient" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Faktura" ToRole="Klient" />
-          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Faktura_Zamówienie" FromRole="Faktura" ToRole="Zamowienie" />
-        </EntityType>
-        <EntityType Name="Klient">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdresEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Faktura" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Klient" ToRole="Faktura" />
-          <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Zamowienie_Klient" FromRole="Klient" ToRole="Zamowienie" />
-        </EntityType>
-        <Association Name="FK_Faktura_Klient">
-          <End Type="SuplementsShopModel.Klient" Role="Klient" Multiplicity="1" />
-          <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Klient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Faktura">
-              <PropertyRef Name="Klient_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Faktura_Zamówienie">
-          <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="1" />
-          <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zamowienie">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Faktura">
-              <PropertyRef Name="Zamówienie_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Zamowienie_Klient">
-          <End Type="SuplementsShopModel.Klient" Role="Klient" Multiplicity="1" />
-          <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Klient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Zamowienie">
-              <PropertyRef Name="Klient_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -618,10 +618,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="Zamowienie_id" ColumnName="Zamowienie_id" />
+                <ScalarProperty Name="Klient_Id" ColumnName="Klient_Id" />
+                <ScalarProperty Name="Naleznosc" ColumnName="Naleznosc" />
+                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Kategoria">
             <EntityTypeMapping TypeName="SuplementsShopModel.Kategoria">
               <MappingFragment StoreEntitySet="Kategoria">
                 <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klient">
+            <EntityTypeMapping TypeName="SuplementsShopModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="AdresEmail" ColumnName="AdresEmail" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -655,10 +677,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProduktyZamówienia">
-            <EntityTypeMapping TypeName="SuplementsShopModel.ProduktyZamówienia">
-              <MappingFragment StoreEntitySet="ProduktyZamówienia">
-                <ScalarProperty Name="Zamówienie_Id" ColumnName="Zamówienie_Id" />
+          <EntitySetMapping Name="ProduktyZamowienia">
+            <EntityTypeMapping TypeName="SuplementsShopModel.ProduktyZamowienia">
+              <MappingFragment StoreEntitySet="ProduktyZamowienia">
+                <ScalarProperty Name="Zamowienie_Id" ColumnName="Zamowienie_Id" />
                 <ScalarProperty Name="Produkt_Id" ColumnName="Produkt_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -685,28 +707,6 @@
                 <ScalarProperty Name="Przedplata" ColumnName="Przedplata" />
                 <ScalarProperty Name="TerminRealizacji" ColumnName="TerminRealizacji" />
                 <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Faktura">
-            <EntityTypeMapping TypeName="SuplementsShopModel.Faktura">
-              <MappingFragment StoreEntitySet="Faktura">
-                <ScalarProperty Name="Zamówienie_id" ColumnName="Zamówienie_id" />
-                <ScalarProperty Name="Klient_Id" ColumnName="Klient_Id" />
-                <ScalarProperty Name="Naleznosc" ColumnName="Naleznosc" />
-                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Klient">
-            <EntityTypeMapping TypeName="SuplementsShopModel.Klient">
-              <MappingFragment StoreEntitySet="Klient">
-                <ScalarProperty Name="AdresEmail" ColumnName="AdresEmail" />
-                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
-                <ScalarProperty Name="Imie" ColumnName="Imie" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

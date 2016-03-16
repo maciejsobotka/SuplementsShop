@@ -17,7 +17,7 @@ namespace SuplementsShopModels
         public Produkt()
         {
             this.ProduktyKategorii = new HashSet<ProduktyKategorii>();
-            this.ProduktyZamówienia = new HashSet<ProduktyZamówienia>();
+            this.ProduktyZamowienia = new HashSet<ProduktyZamowienia>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace SuplementsShopModels
     
         public virtual Producent Producent { get; set; }
         public virtual ICollection<ProduktyKategorii> ProduktyKategorii { get; set; }
-        public virtual ICollection<ProduktyZamówienia> ProduktyZamówienia { get; set; }
+        public virtual ICollection<ProduktyZamowienia> ProduktyZamowienia { get; set; }
     }
 }
