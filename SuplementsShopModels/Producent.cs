@@ -19,7 +19,7 @@ namespace SuplementsShopModels
             this.Produkt = new HashSet<Produkt>();
         }
     
-        public int Id { get; set; }
+        public int Producent_Id { get; set; }
         public string NazwaProducenta { get; set; }
     
         public virtual ICollection<Produkt> Produkt { get; set; }

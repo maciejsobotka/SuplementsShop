@@ -7,9 +7,9 @@
     <Schema Namespace="SuplementsShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adres">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Adres_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adres_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NrDomu" Type="int" Nullable="false" />
           <Property Name="NrMieszkania" Type="int" Nullable="false" />
@@ -19,26 +19,28 @@
         </EntityType>
         <EntityType Name="Faktura">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Faktura_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Faktura_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TerminPlatnosci" Type="date" Nullable="false" />
           <Property Name="Naleznosc" Type="int" Nullable="false" />
+          <Property Name="Oplacona" Type="bit" Nullable="false" />
+          <Property Name="TerminOplacenia" Type="date" Nullable="false" />
           <Property Name="Klient_Id" Type="int" Nullable="false" />
           <Property Name="Zamowienie_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Kategoria">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Kategoria_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Kategoria_Id" Type="int" Nullable="false" />
           <Property Name="NazwaKategorii" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Klient">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Klient_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Klient_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -46,54 +48,55 @@
         </EntityType>
         <EntityType Name="Producent">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Producent_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Producent_Id" Type="int" Nullable="false" />
           <Property Name="NazwaProducenta" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Produkt">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Produkt_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Produkt_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NazwaProduktu" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CenaProduktu" Type="float" Nullable="false" />
           <Property Name="WagaProduktu" Type="float" Nullable="false" />
-          <Property Name="DataDodaniaProduktu" Type="datetime" />
+          <Property Name="DataDodaniaProduktu" Type="datetime" Nullable="false" />
           <Property Name="Producent_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProduktyKategorii">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProduktyKategorii_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProduktyKategorii_Id" Type="int" Nullable="false" />
           <Property Name="Produkt_Id" Type="int" Nullable="false" />
           <Property Name="Kategoria_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProduktyZamowienia">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProduktyZamowienia_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProduktyZamowienia_Id" Type="int" Nullable="false" />
           <Property Name="Produkt_Id" Type="int" Nullable="false" />
           <Property Name="Zamowienie_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Przesylka">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Przesylka_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Przesylka_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PotwierdzoneDostarczenie" Type="bit" Nullable="false" />
           <Property Name="Wartosc" Type="int" Nullable="false" />
           <Property Name="AdresDostawy" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Zamowienie">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Zamowienie_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Zamowienie_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Wartosc" Type="int" Nullable="false" />
-          <Property Name="TerminRealizacji" Type="date" Nullable="false" />
+          <Property Name="CzasRejestracji" Type="date" Nullable="false" />
+          <Property Name="TerminRealizacji" Type="date" />
           <Property Name="Przedplata" Type="int" Nullable="false" />
           <Property Name="Odrzucone" Type="bit" />
           <Property Name="LiczbaProduktow" Type="int" Nullable="false" />
@@ -106,7 +109,7 @@
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klient">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Klient_Id" />
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="Klient_Id" />
@@ -118,7 +121,7 @@
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Zamowienie_Id" />
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="Zamowienie_id" />
@@ -130,7 +133,7 @@
           <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producent">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Producent_Id" />
             </Principal>
             <Dependent Role="Produkt">
               <PropertyRef Name="Producent_Id" />
@@ -142,7 +145,7 @@
           <End Role="ProduktyKategorii" Type="Self.ProduktyKategorii" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kategoria">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Kategoria_Id" />
             </Principal>
             <Dependent Role="ProduktyKategorii">
               <PropertyRef Name="Kategoria_Id" />
@@ -154,7 +157,7 @@
           <End Role="ProduktyKategorii" Type="Self.ProduktyKategorii" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Produkt_Id" />
             </Principal>
             <Dependent Role="ProduktyKategorii">
               <PropertyRef Name="Produkt_Id" />
@@ -166,7 +169,7 @@
           <End Role="ProduktyZamowienia" Type="Self.ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Produkt_Id" />
             </Principal>
             <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Produkt_Id" />
@@ -178,7 +181,7 @@
           <End Role="ProduktyZamowienia" Type="Self.ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Zamowienie_Id" />
             </Principal>
             <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Zamowienie_Id" />
@@ -190,7 +193,7 @@
           <End Role="Przesylka" Type="Self.Przesylka" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adres">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Adres_Id" />
             </Principal>
             <Dependent Role="Przesylka">
               <PropertyRef Name="AdresDostawy" />
@@ -202,7 +205,7 @@
           <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adres">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Adres_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="AdresRealizacji" />
@@ -214,7 +217,7 @@
           <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klient">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Klient_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="Klient_Id" />
@@ -226,7 +229,7 @@
           <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Przesylka">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Przesylka_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="Przesylka_Id" />
@@ -351,9 +354,9 @@
         </EntityContainer>
         <EntityType Name="Adres">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Adres_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ulica" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NrDomu" Type="Int32" Nullable="false" />
           <Property Name="NrMieszkania" Type="Int32" Nullable="false" />
@@ -365,11 +368,13 @@
         </EntityType>
         <EntityType Name="Faktura">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Faktura_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Faktura_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Naleznosc" Type="Int32" Nullable="false" />
+          <Property Name="Oplacona" Type="Boolean" Nullable="false" />
+          <Property Name="TerminOplacenia" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Klient_Id" Type="Int32" Nullable="false" />
           <Property Name="Zamowienie_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Klient" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Faktura" ToRole="Klient" />
@@ -377,17 +382,17 @@
         </EntityType>
         <EntityType Name="Kategoria">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Kategoria_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Kategoria_Id" Type="Int32" Nullable="false" />
           <Property Name="NazwaKategorii" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProduktyKategorii" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria" FromRole="Kategoria" ToRole="ProduktyKategorii" />
         </EntityType>
         <EntityType Name="Klient">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Klient_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Klient_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -397,21 +402,21 @@
         </EntityType>
         <EntityType Name="Producent">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Producent_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Producent_Id" Type="Int32" Nullable="false" />
           <Property Name="NazwaProducenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Produkt" Relationship="SuplementsShopModel.FK_Produkt_ToTableProducent" FromRole="Producent" ToRole="Produkt" />
         </EntityType>
         <EntityType Name="Produkt">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Produkt_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Produkt_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NazwaProduktu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CenaProduktu" Type="Double" Nullable="false" />
           <Property Name="WagaProduktu" Type="Double" Nullable="false" />
-          <Property Name="DataDodaniaProduktu" Type="DateTime" Precision="3" />
+          <Property Name="DataDodaniaProduktu" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Producent_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producent" Relationship="SuplementsShopModel.FK_Produkt_ToTableProducent" FromRole="Produkt" ToRole="Producent" />
           <NavigationProperty Name="ProduktyKategorii" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableProdukt" FromRole="Produkt" ToRole="ProduktyKategorii" />
@@ -419,9 +424,9 @@
         </EntityType>
         <EntityType Name="ProduktyKategorii">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProduktyKategorii_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProduktyKategorii_Id" Type="Int32" Nullable="false" />
           <Property Name="Produkt_Id" Type="Int32" Nullable="false" />
           <Property Name="Kategoria_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kategoria" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria" FromRole="ProduktyKategorii" ToRole="Kategoria" />
@@ -429,9 +434,9 @@
         </EntityType>
         <EntityType Name="ProduktyZamowienia">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProduktyZamowienia_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProduktyZamowienia_Id" Type="Int32" Nullable="false" />
           <Property Name="Produkt_Id" Type="Int32" Nullable="false" />
           <Property Name="Zamowienie_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Produkt" Relationship="SuplementsShopModel.FK_ProduktyZamówienia_ToTableProdukt" FromRole="ProduktyZamowienia" ToRole="Produkt" />
@@ -439,9 +444,9 @@
         </EntityType>
         <EntityType Name="Przesylka">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Przesylka_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Przesylka_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PotwierdzoneDostarczenie" Type="Boolean" Nullable="false" />
           <Property Name="Wartosc" Type="Int32" Nullable="false" />
           <Property Name="AdresDostawy" Type="Int32" Nullable="false" />
@@ -450,11 +455,12 @@
         </EntityType>
         <EntityType Name="Zamowienie">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Zamowienie_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zamowienie_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Wartosc" Type="Int32" Nullable="false" />
-          <Property Name="TerminRealizacji" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CzasRejestracji" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TerminRealizacji" Type="DateTime" Precision="0" />
           <Property Name="Przedplata" Type="Int32" Nullable="false" />
           <Property Name="Odrzucone" Type="Boolean" />
           <Property Name="LiczbaProduktow" Type="Int32" Nullable="false" />
@@ -472,7 +478,7 @@
           <End Type="SuplementsShopModel.Przesylka" Role="Przesylka" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adres">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Adres_Id" />
             </Principal>
             <Dependent Role="Przesylka">
               <PropertyRef Name="AdresDostawy" />
@@ -484,7 +490,7 @@
           <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adres">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Adres_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="AdresRealizacji" />
@@ -496,7 +502,7 @@
           <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klient">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Klient_Id" />
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="Klient_Id" />
@@ -508,7 +514,7 @@
           <End Type="SuplementsShopModel.Faktura" Role="Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Zamowienie_Id" />
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="Zamowienie_id" />
@@ -520,7 +526,7 @@
           <End Type="SuplementsShopModel.ProduktyKategorii" Role="ProduktyKategorii" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kategoria">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Kategoria_Id" />
             </Principal>
             <Dependent Role="ProduktyKategorii">
               <PropertyRef Name="Kategoria_Id" />
@@ -532,7 +538,7 @@
           <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klient">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Klient_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="Klient_Id" />
@@ -544,7 +550,7 @@
           <End Type="SuplementsShopModel.Produkt" Role="Produkt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producent">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Producent_Id" />
             </Principal>
             <Dependent Role="Produkt">
               <PropertyRef Name="Producent_Id" />
@@ -556,7 +562,7 @@
           <End Type="SuplementsShopModel.ProduktyKategorii" Role="ProduktyKategorii" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Produkt_Id" />
             </Principal>
             <Dependent Role="ProduktyKategorii">
               <PropertyRef Name="Produkt_Id" />
@@ -568,7 +574,7 @@
           <End Type="SuplementsShopModel.ProduktyZamowienia" Role="ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkt">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Produkt_Id" />
             </Principal>
             <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Produkt_Id" />
@@ -580,7 +586,7 @@
           <End Type="SuplementsShopModel.ProduktyZamowienia" Role="ProduktyZamowienia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zamowienie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Zamowienie_Id" />
             </Principal>
             <Dependent Role="ProduktyZamowienia">
               <PropertyRef Name="Zamowienie_Id" />
@@ -592,7 +598,7 @@
           <End Type="SuplementsShopModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Przesylka">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Przesylka_Id" />
             </Principal>
             <Dependent Role="Zamowienie">
               <PropertyRef Name="Przesylka_Id" />
@@ -614,7 +620,7 @@
                 <ScalarProperty Name="NrMieszkania" ColumnName="NrMieszkania" />
                 <ScalarProperty Name="NrDomu" ColumnName="NrDomu" />
                 <ScalarProperty Name="Ulica" ColumnName="Ulica" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adres_Id" ColumnName="Adres_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -623,9 +629,11 @@
               <MappingFragment StoreEntitySet="Faktura">
                 <ScalarProperty Name="Zamowienie_id" ColumnName="Zamowienie_id" />
                 <ScalarProperty Name="Klient_Id" ColumnName="Klient_Id" />
+                <ScalarProperty Name="TerminOplacenia" ColumnName="TerminOplacenia" />
+                <ScalarProperty Name="Oplacona" ColumnName="Oplacona" />
                 <ScalarProperty Name="Naleznosc" ColumnName="Naleznosc" />
                 <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Faktura_Id" ColumnName="Faktura_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -633,7 +641,7 @@
             <EntityTypeMapping TypeName="SuplementsShopModel.Kategoria">
               <MappingFragment StoreEntitySet="Kategoria">
                 <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kategoria_Id" ColumnName="Kategoria_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -644,7 +652,7 @@
                 <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
                 <ScalarProperty Name="Imie" ColumnName="Imie" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Klient_Id" ColumnName="Klient_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -652,7 +660,7 @@
             <EntityTypeMapping TypeName="SuplementsShopModel.Producent">
               <MappingFragment StoreEntitySet="Producent">
                 <ScalarProperty Name="NazwaProducenta" ColumnName="NazwaProducenta" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Producent_Id" ColumnName="Producent_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -664,7 +672,7 @@
                 <ScalarProperty Name="WagaProduktu" ColumnName="WagaProduktu" />
                 <ScalarProperty Name="CenaProduktu" ColumnName="CenaProduktu" />
                 <ScalarProperty Name="NazwaProduktu" ColumnName="NazwaProduktu" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Produkt_Id" ColumnName="Produkt_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -673,7 +681,7 @@
               <MappingFragment StoreEntitySet="ProduktyKategorii">
                 <ScalarProperty Name="Kategoria_Id" ColumnName="Kategoria_Id" />
                 <ScalarProperty Name="Produkt_Id" ColumnName="Produkt_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProduktyKategorii_Id" ColumnName="ProduktyKategorii_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -682,7 +690,7 @@
               <MappingFragment StoreEntitySet="ProduktyZamowienia">
                 <ScalarProperty Name="Zamowienie_Id" ColumnName="Zamowienie_Id" />
                 <ScalarProperty Name="Produkt_Id" ColumnName="Produkt_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProduktyZamowienia_Id" ColumnName="ProduktyZamowienia_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -692,7 +700,7 @@
                 <ScalarProperty Name="AdresDostawy" ColumnName="AdresDostawy" />
                 <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
                 <ScalarProperty Name="PotwierdzoneDostarczenie" ColumnName="PotwierdzoneDostarczenie" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Przesylka_Id" ColumnName="Przesylka_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -706,8 +714,9 @@
                 <ScalarProperty Name="Odrzucone" ColumnName="Odrzucone" />
                 <ScalarProperty Name="Przedplata" ColumnName="Przedplata" />
                 <ScalarProperty Name="TerminRealizacji" ColumnName="TerminRealizacji" />
+                <ScalarProperty Name="CzasRejestracji" ColumnName="CzasRejestracji" />
                 <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Zamowienie_Id" ColumnName="Zamowienie_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

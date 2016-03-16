@@ -20,7 +20,7 @@ namespace SuplementsShopModels
             this.Zamowienie = new HashSet<Zamowienie>();
         }
     
-        public int Id { get; set; }
+        public int Adres_Id { get; set; }
         public string Ulica { get; set; }
         public int NrDomu { get; set; }
         public int NrMieszkania { get; set; }

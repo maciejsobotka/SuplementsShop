@@ -14,7 +14,7 @@ namespace SuplementsShopModels
     
     public partial class ProduktyKategorii
     {
-        public int Id { get; set; }
+        public int ProduktyKategorii_Id { get; set; }
         public int Produkt_Id { get; set; }
         public int Kategoria_Id { get; set; }
     

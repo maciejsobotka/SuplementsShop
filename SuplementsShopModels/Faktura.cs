@@ -14,9 +14,11 @@ namespace SuplementsShopModels
     
     public partial class Faktura
     {
-        public int Id { get; set; }
+        public int Faktura_Id { get; set; }
         public System.DateTime TerminPlatnosci { get; set; }
         public int Naleznosc { get; set; }
+        public bool Oplacona { get; set; }
+        public System.DateTime TerminOplacenia { get; set; }
         public int Klient_Id { get; set; }
         public int Zamowienie_id { get; set; }
     

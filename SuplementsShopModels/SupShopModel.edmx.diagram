@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e5f9e8096a5f4aed9129f190bb465cad" Name="Diagram1">
-        <EntityTypeShape EntityType="SuplementsShopModel.Adres" Width="1.5" PointX="0.5" PointY="1.75" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Faktura" Width="1.5" PointX="1.25" PointY="6.75" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Kategoria" Width="1.5" PointX="10.75" PointY="6.125" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Klient" Width="1.5" PointX="4.5" PointY="8.75" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Producent" Width="1.5" PointX="7.875" PointY="6.375" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Produkt" Width="1.5" PointX="6.875" PointY="8.5" />
-        <EntityTypeShape EntityType="SuplementsShopModel.ProduktyKategorii" Width="1.5" PointX="8.875" PointY="9.125" />
-        <EntityTypeShape EntityType="SuplementsShopModel.ProduktyZamowienia" Width="1.5" PointX="9.25" PointY="3.625" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Przesylka" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="SuplementsShopModel.Zamowienie" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Adres" Width="1.5" PointX="0.875" PointY="2.25" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Faktura" Width="1.5" PointX="3.125" PointY="2.75" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Kategoria" Width="1.5" PointX="13.5" PointY="2.75" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Klient" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Producent" Width="1.5" PointX="7" PointY="3.375" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Produkt" Width="1.5" PointX="9.125" PointY="2.625" />
+        <EntityTypeShape EntityType="SuplementsShopModel.ProduktyKategorii" Width="1.5" PointX="11.25" PointY="2.625" />
+        <EntityTypeShape EntityType="SuplementsShopModel.ProduktyZamowienia" Width="1.5" PointX="6.75" PointY="6.5" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Przesylka" Width="1.5" PointX="0.5" PointY="6" />
+        <EntityTypeShape EntityType="SuplementsShopModel.Zamowienie" Width="1.5" PointX="5.25" PointY="1.875" />
         <AssociationConnector Association="SuplementsShopModel.FK_Przesylka_Adres" />
         <AssociationConnector Association="SuplementsShopModel.FK_Zamowienie_Adres" />
         <AssociationConnector Association="SuplementsShopModel.FK_Faktura_Klient" />

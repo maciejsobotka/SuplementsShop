@@ -20,9 +20,10 @@ namespace SuplementsShopModels
             this.ProduktyZamowienia = new HashSet<ProduktyZamowienia>();
         }
     
-        public int Id { get; set; }
+        public int Zamowienie_Id { get; set; }
         public int Wartosc { get; set; }
-        public System.DateTime TerminRealizacji { get; set; }
+        public System.DateTime CzasRejestracji { get; set; }
+        public Nullable<System.DateTime> TerminRealizacji { get; set; }
         public int Przedplata { get; set; }
         public Nullable<bool> Odrzucone { get; set; }
         public int LiczbaProduktow { get; set; }
