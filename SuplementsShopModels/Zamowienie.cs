@@ -21,11 +21,11 @@ namespace SuplementsShopModels
         }
     
         public int Zamowienie_Id { get; set; }
-        public int Wartosc { get; set; }
+        public double Wartosc { get; set; }
         public System.DateTime CzasRejestracji { get; set; }
-        public Nullable<System.DateTime> TerminRealizacji { get; set; }
-        public int Przedplata { get; set; }
-        public Nullable<bool> Odrzucone { get; set; }
+        public System.DateTime TerminRealizacji { get; set; }
+        public double Przedplata { get; set; }
+        public bool Odrzucone { get; set; }
         public int LiczbaProduktow { get; set; }
         public int AdresRealizacji { get; set; }
         public int Klient_Id { get; set; }

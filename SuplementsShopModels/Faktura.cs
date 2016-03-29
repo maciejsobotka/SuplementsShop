@@ -16,11 +16,11 @@ namespace SuplementsShopModels
     {
         public int Faktura_Id { get; set; }
         public System.DateTime TerminPlatnosci { get; set; }
-        public int Naleznosc { get; set; }
+        public double Naleznosc { get; set; }
         public bool Oplacona { get; set; }
         public System.DateTime TerminOplacenia { get; set; }
         public int Klient_Id { get; set; }
-        public int Zamowienie_id { get; set; }
+        public int Zamowienie_Id { get; set; }
     
         public virtual Klient Klient { get; set; }
         public virtual Zamowienie Zamowienie { get; set; }

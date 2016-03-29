@@ -21,7 +21,7 @@ namespace SuplementsShopModels
     
         public int Przesylka_Id { get; set; }
         public bool PotwierdzoneDostarczenie { get; set; }
-        public int Wartosc { get; set; }
+        public double Wartosc { get; set; }
         public int AdresDostawy { get; set; }
     
         public virtual Adres Adres { get; set; }

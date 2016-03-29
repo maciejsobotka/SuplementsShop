@@ -23,7 +23,7 @@
           </Key>
           <Property Name="Faktura_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TerminPlatnosci" Type="date" Nullable="false" />
-          <Property Name="Naleznosc" Type="int" Nullable="false" />
+          <Property Name="Naleznosc" Type="float" Nullable="false" />
           <Property Name="Oplacona" Type="bit" Nullable="false" />
           <Property Name="TerminOplacenia" Type="date" Nullable="false" />
           <Property Name="Klient_Id" Type="int" Nullable="false" />
@@ -34,7 +34,7 @@
             <PropertyRef Name="Kategoria_Id" />
           </Key>
           <Property Name="Kategoria_Id" Type="int" Nullable="false" />
-          <Property Name="NazwaKategorii" Type="nvarchar" MaxLength="50" />
+          <Property Name="NazwaKategorii" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Klient">
           <Key>
@@ -86,7 +86,7 @@
           </Key>
           <Property Name="Przesylka_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PotwierdzoneDostarczenie" Type="bit" Nullable="false" />
-          <Property Name="Wartosc" Type="int" Nullable="false" />
+          <Property Name="Wartosc" Type="float" Nullable="false" />
           <Property Name="AdresDostawy" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Zamowienie">
@@ -94,11 +94,11 @@
             <PropertyRef Name="Zamowienie_Id" />
           </Key>
           <Property Name="Zamowienie_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Wartosc" Type="int" Nullable="false" />
+          <Property Name="Wartosc" Type="float" Nullable="false" />
           <Property Name="CzasRejestracji" Type="date" Nullable="false" />
-          <Property Name="TerminRealizacji" Type="date" />
-          <Property Name="Przedplata" Type="int" Nullable="false" />
-          <Property Name="Odrzucone" Type="bit" />
+          <Property Name="TerminRealizacji" Type="date" Nullable="false" />
+          <Property Name="Przedplata" Type="float" Nullable="false" />
+          <Property Name="Odrzucone" Type="bit" Nullable="false" />
           <Property Name="LiczbaProduktow" Type="int" Nullable="false" />
           <Property Name="AdresRealizacji" Type="int" Nullable="false" />
           <Property Name="Klient_Id" Type="int" Nullable="false" />
@@ -372,11 +372,11 @@
           </Key>
           <Property Name="Faktura_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Naleznosc" Type="Int32" Nullable="false" />
+          <Property Name="Naleznosc" Type="Double" Nullable="false" />
           <Property Name="Oplacona" Type="Boolean" Nullable="false" />
           <Property Name="TerminOplacenia" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Klient_Id" Type="Int32" Nullable="false" />
-          <Property Name="Zamowienie_id" Type="Int32" Nullable="false" />
+          <Property Name="Zamowienie_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Klient" Relationship="SuplementsShopModel.FK_Faktura_Klient" FromRole="Faktura" ToRole="Klient" />
           <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Faktura_Zamowienie" FromRole="Faktura" ToRole="Zamowienie" />
         </EntityType>
@@ -385,7 +385,7 @@
             <PropertyRef Name="Kategoria_Id" />
           </Key>
           <Property Name="Kategoria_Id" Type="Int32" Nullable="false" />
-          <Property Name="NazwaKategorii" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NazwaKategorii" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProduktyKategorii" Relationship="SuplementsShopModel.FK_ProduktyKategorii_ToTableKategoria" FromRole="Kategoria" ToRole="ProduktyKategorii" />
         </EntityType>
         <EntityType Name="Klient">
@@ -448,7 +448,7 @@
           </Key>
           <Property Name="Przesylka_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PotwierdzoneDostarczenie" Type="Boolean" Nullable="false" />
-          <Property Name="Wartosc" Type="Int32" Nullable="false" />
+          <Property Name="Wartosc" Type="Double" Nullable="false" />
           <Property Name="AdresDostawy" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Adres" Relationship="SuplementsShopModel.FK_Przesylka_Adres" FromRole="Przesylka" ToRole="Adres" />
           <NavigationProperty Name="Zamowienie" Relationship="SuplementsShopModel.FK_Zamowienie_Przesylka" FromRole="Przesylka" ToRole="Zamowienie" />
@@ -458,11 +458,11 @@
             <PropertyRef Name="Zamowienie_Id" />
           </Key>
           <Property Name="Zamowienie_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Wartosc" Type="Int32" Nullable="false" />
+          <Property Name="Wartosc" Type="Double" Nullable="false" />
           <Property Name="CzasRejestracji" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TerminRealizacji" Type="DateTime" Precision="0" />
-          <Property Name="Przedplata" Type="Int32" Nullable="false" />
-          <Property Name="Odrzucone" Type="Boolean" />
+          <Property Name="TerminRealizacji" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Przedplata" Type="Double" Nullable="false" />
+          <Property Name="Odrzucone" Type="Boolean" Nullable="false" />
           <Property Name="LiczbaProduktow" Type="Int32" Nullable="false" />
           <Property Name="AdresRealizacji" Type="Int32" Nullable="false" />
           <Property Name="Klient_Id" Type="Int32" Nullable="false" />
@@ -517,7 +517,7 @@
               <PropertyRef Name="Zamowienie_Id" />
             </Principal>
             <Dependent Role="Faktura">
-              <PropertyRef Name="Zamowienie_id" />
+              <PropertyRef Name="Zamowienie_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -627,7 +627,7 @@
           <EntitySetMapping Name="Faktura">
             <EntityTypeMapping TypeName="SuplementsShopModel.Faktura">
               <MappingFragment StoreEntitySet="Faktura">
-                <ScalarProperty Name="Zamowienie_id" ColumnName="Zamowienie_id" />
+                <ScalarProperty Name="Zamowienie_Id" ColumnName="Zamowienie_id" />
                 <ScalarProperty Name="Klient_Id" ColumnName="Klient_Id" />
                 <ScalarProperty Name="TerminOplacenia" ColumnName="TerminOplacenia" />
                 <ScalarProperty Name="Oplacona" ColumnName="Oplacona" />

@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[Zamowienie]
 (
 	[Zamowienie_Id] INT IDENTITY PRIMARY KEY, 
-    [Wartosc] INT NOT NULL,
+    [Wartosc] FLOAT NOT NULL,
 	[CzasRejestracji] DATE NOT NULL, 
-    [TerminRealizacji] DATE NULL, 
-    [Przedplata] INT NOT NULL, 
-    [Odrzucone] BIT NULL, 
+    [TerminRealizacji] DATE NOT NULL, 
+    [Przedplata] FLOAT NOT NULL, 
+    [Odrzucone] BIT NOT NULL, 
     [LiczbaProduktow] INT NOT NULL, 
     [AdresRealizacji] INT NOT NULL,
     [Klient_Id] INT NOT NULL, 
