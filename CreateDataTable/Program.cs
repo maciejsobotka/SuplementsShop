@@ -54,6 +54,9 @@ namespace CreateDataTable
                             case 3:
                                 table += a[j][i] + "|";
                                 break;
+                            case 4:
+                                table += a[j][i] + "|";
+                                break;
                         }
                         switch (b[j][i].Length)
                         {
@@ -64,6 +67,9 @@ namespace CreateDataTable
                                 table += b[j][i] + " |";
                                 break;
                             case 3:
+                                table += b[j][i] + "|";
+                                break;
+                            case 4:
                                 table += b[j][i] + "|";
                                 break;
                         }
@@ -104,6 +110,9 @@ namespace CreateDataTable
                         case 3:
                             table += avgA.ToString() + "|";
                             break;
+                        case 4:
+                            table += avgA.ToString() + "|";
+                            break;
                     }
                     int avgB = Avg(b[j]);
                     switch (avgA.ToString().Length)
@@ -115,6 +124,9 @@ namespace CreateDataTable
                             table += avgB.ToString() + " |";
                             break;
                         case 3:
+                            table += avgB.ToString() + "|";
+                            break;
+                        case 4:
                             table += avgB.ToString() + "|";
                             break;
                     }
@@ -130,7 +142,7 @@ namespace CreateDataTable
                             table += " " + (avgA + avgB).ToString() + "  |";
                             break;
                         case 4:
-                            table += " " + (avgA * 2).ToString() + " |";
+                            table += " " + (avgA + avgB).ToString() + " |";
                             break;
                     }
                 }
