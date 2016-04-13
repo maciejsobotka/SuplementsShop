@@ -37,7 +37,7 @@ namespace CreateDataTable
                     + "---------------------------------------------------\n";
                 for (int i=0; i< aW1.Length; ++i)
                 {
-                    if(i<10)
+                    if(i<9)
                         table += "|" + (i+1).ToString() + "   |";
                     else
                         table += "|" + (i + 1).ToString() + "  |";
@@ -136,6 +136,9 @@ namespace CreateDataTable
                 }
                 table += "\n---------------------------------------------------";
                 Console.WriteLine(table);
+                StreamWriter file = new StreamWriter(@"D:\table.txt");
+                file.WriteLine(table);
+                file.Close();
                 Console.Read();
             }
             catch(Exception e)
